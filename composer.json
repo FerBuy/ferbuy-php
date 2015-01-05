@@ -1,0 +1,29 @@
+{
+  "name": "FerBuy/ferbuy-php",
+  "description": "FerBuy PHP Library",
+  "keywords": [
+    "ferbuy",
+    "payment processing",
+    "api"
+  ],
+  "homepage": "http://www.ferbuy.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "FerBuy and contributors",
+      "homepage": "https://github.com/FerBuy/ferbuy-php/contributors"
+    }
+  ],
+  "require": {
+    "php": ">=5.2",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "simpletest/simpletest": "*"
+  },
+  "autoload": {
+    "classmap": ["lib/Ferbuy/"]
+  }
+}
