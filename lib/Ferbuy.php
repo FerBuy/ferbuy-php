@@ -11,7 +11,6 @@
  * @link     http://www.ferbuy.com
  */
 
-// This snippet (and some of the curl code) due to the Facebook SDK.
 if (!function_exists('curl_init')) {
     throw new Exception('FerBuy needs the CURL PHP extension.');
 }
@@ -35,6 +34,9 @@ require_once dirname(__FILE__) . '/Ferbuy/InvalidRequestError.php';
 require_once dirname(__FILE__) . '/Ferbuy/Object.php';
 require_once dirname(__FILE__) . '/Ferbuy/ApiRequestor.php';
 require_once dirname(__FILE__) . '/Ferbuy/ApiResource.php';
+
+// Gateway
+require_once dirname(__FILE__) . '/Ferbuy/Gateway.php';
 
 // API Resources
 require_once dirname(__FILE__) . '/Ferbuy/Transaction.php';

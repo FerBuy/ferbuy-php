@@ -17,23 +17,23 @@ class Ferbuy_ApiRequestor
     /**
      * Constructor
      *
-     * @param int    $siteId    Site id
-     * @param string $apiSecret API secret
-     * @param string $apiBase   API's base URL
+     * @param int    $siteId  Site id
+     * @param string $secret  Shared secret
+     * @param string $apiBase API's base URL
      *
      * @return null
      */
-    public function __construct($siteId=null, $apiSecret=null, $apiBase=null)
+    public function __construct($siteId=null, $secret=null, $apiBase=null)
     {
         if (!$siteId) {
             $siteId = Ferbuy::$siteId;
         }
         $this->_siteId = $siteId;
 
-        if (!$apiSecret) {
-            $apiSecret = Ferbuy::$apiSecret;
+        if (!$secret) {
+            $secret = Ferbuy::$secret;
         }
-        $this->_apiSecret = $apiSecret;
+        $this->_secret = $secret;
 
         if (!$apiBase) {
             $apiBase = Ferbuy::$apiBase;
@@ -68,7 +68,7 @@ class Ferbuy_ApiRequestor
             $data['transaction_id'],
             $data['command'],
             $data['output_type'],
-            $this->_apiSecret
+            $this->_secret
         ));
 
         return sha1($signature);

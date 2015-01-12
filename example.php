@@ -2,7 +2,7 @@
 require_once './lib/Ferbuy.php';
 
 Ferbuy::setSiteId(1000);
-Ferbuy::setApiSecret('your_api_secret');
+Ferbuy::setSecret('your_secret');
 
 $result = Ferbuy_Transaction::refund(array(
     'transaction_id' => '10000',

@@ -10,12 +10,17 @@ abstract class Ferbuy
     /**
      * Client PHP binding project version.
      */
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.1';
 
     /**
-     * @var string The FerBuy API secret to be used for requests.
+     * @var string The FerBuy Gateway environment.
      */
-    public static $apiSecret;
+    public static $env;
+
+    /**
+     * @var string The FerBuy shared secret used in checksum verification.
+     */
+    public static $secret;
 
     /**
      * @var int The Ferbuy site ID.
@@ -23,30 +28,57 @@ abstract class Ferbuy
     public static $siteId;
 
     /**
-     * @ var string THe base URL for the FerBuy API requests.
+     * @ var string The base URL for the FerBuy Gateway requests.
+     */
+    public static $gatewayBase = 'https://gateway.ferbuy.com/';
+
+    /**
+     * @ var string The base URL for the FerBuy API requests.
      */
     public static $apiBase = 'https://gateway.ferbuy.com/api';
 
     /**
-     * Get API secret
+     * Get Gateway environmen
      *
-     * @return string The API secret key used for requests.
+     * @return string Demo or live environment
      */
-    public static function getApiSecret()
+    public static function getEnv()
     {
-        return self::$apiSecret;
+        return self::$env;
     }
 
     /**
-     * Sets the API secret key to be used for requests.
+     * Set Gateway environment
      *
-     * @param string $apiSecret API secret key
+     * @param string $env Demo or live env
      *
      * @return null
      */
-    public static function setApiSecret($apiSecret)
+    public static function setEnv($env)
     {
-        self::$apiSecret = $apiSecret;
+        self::$env = $env;
+    }
+
+    /**
+     * Get shared secret
+     *
+     * @return string The FerBuy's shared secret key used for requests.
+     */
+    public static function getSecret()
+    {
+        return self::$secret;
+    }
+
+    /**
+     * Set the FerBuy's shared secret used in checksum verification.
+     *
+     * @param string $secret Shared secret
+     *
+     * @return null
+     */
+    public static function setSecret($secret)
+    {
+        self::$secret = $secret;
     }
 
     /**

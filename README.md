@@ -29,13 +29,76 @@ require_once "/path/to/ferbuy-php/lib/Ferbuy.php";
 
 ## Quick Start Example
 
+
+### Example Gateway usage
+
+Example Gateway call and redirect to checkout page:
+
+```php
+require_once "/path/to/ferbuy-php/lib/Ferbuy.php";
+
+Ferbuy::setSiteId(1000);
+Ferbuy::setSecret('your_secret');
+Ferbuy::setEnv('demo');
+
+$data = array(
+    'reference' => 'Transaction-'.rand(10000, 99999),
+    'currency' => 'EUR',
+    'amount' => rand(10000, 99999),
+    'return_url_ok' => 'http://www.your-site.com/success/',
+    'return_url_cancel' => 'http://www.your-site.com/failed/',
+    'first_name' => 'Joe',
+    'last_name' => 'Doe',
+    'address' => 'Business Center',
+    'postal_code' => 'SLM000',
+    'city' => 'Landville',
+    'country_iso' => 'US',
+    'email' => 'demo@email.com',
+);
+
+$gateway = new Ferbuy_Gateway($data);
+```
+
+In your template render the form fields:
+
+```html
+<form method="post" action="<?php echo $gateway->url(); ?>">
+    <?php echo $gateway->render(); ?>
+    <input type="submit" value="Submit">
+</form>
+```
+
+To verify the call you can use the following snippet:
+
+```php
+require_once "/path/to/ferbuy-php/lib/Ferbuy.php";
+
+Ferbuy::setSiteId(1000);
+Ferbuy::setSecret('your_secret');
+Ferbuy::setEnv('demo');
+
+if (Ferbuy_Gateway::verifyCallback($_POST)) {
+    if ($_POST['status'] == 200) {
+        // Transaction successful
+    } elseif ($_POST['status'] >= 401) {
+        // Transaction failed
+    }
+} else {
+    // Incorrect checksum
+}
+
+exit($_POST['transaction_id'] . '.' . $_POST['status']);
+```
+
+### Example API usage
+
 Example API call to refund a transaction for 1 EUR:
 
 ```php
 require_once "/path/to/ferbuy-php/lib/Ferbuy.php";
 
 Ferbuy::setSiteId(1000);
-Ferbuy::setApiSecret('your_api_secret');
+Ferbuy::setSecret('your_secret');
 
 $result = Ferbuy_Transaction::refund(array(
     'transaction_id' => '10000',
@@ -58,7 +121,7 @@ Example call for marking order as shipped:
 require_once "/path/to/ferbuy-php/lib/Ferbuy.php";
 
 Ferbuy::setSiteId(1000);
-Ferbuy::setApiSecret('your_api_secret');
+Ferbuy::setSecret('your_secret');
 
 $result = Ferbuy_Order::shipped(array(
     'transaction_id' => '10000',
