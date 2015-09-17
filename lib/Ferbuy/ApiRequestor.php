@@ -231,13 +231,13 @@ class Ferbuy_ApiRequestor
             if ($status_code == 400 || $status_code == 401) {
                 $msg = sprintf(
                     "Invalid request error %s %d",
-                    $reponse, $status_code
+                    $response, $status_code
                 );
-                throw new Ferbuy_InvalidRequestError($msg);
+                throw new Ferbuy_InvalidRequestError($msg, null);
             } else {
                 $msg = sprintf(
                     "API request error %s %d",
-                    $reponse, $status_code
+                    $response, $status_code
                 );
                 throw new Ferbuy_ApiError($msg);
             }
@@ -252,6 +252,8 @@ class Ferbuy_ApiRequestor
             $obj = Ferbuy_Object::create($resp_array['error']);
             $msg = $obj->errorSubject . '. ' . $obj->errorDetail;
             throw new Ferbuy_ApiError($msg);
+        } else {
+            $obj = null;
         }
 
         return $obj;
