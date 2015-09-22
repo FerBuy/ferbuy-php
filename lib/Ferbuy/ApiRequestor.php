@@ -160,6 +160,8 @@ class Ferbuy_ApiRequestor
             $curl_opts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
         }
 
+        $curl_opts[CURLOPT_SSL_VERIFYHOST] = 0;
+        $curl_opts[CURLOPT_SSL_VERIFYPEER] = 0;
         $curl_opts[CURLOPT_URL] = $absUrl;
         $curl_opts[CURLOPT_RETURNTRANSFER] = true;
         $curl_opts[CURLOPT_CONNECTTIMEOUT] = 30;
