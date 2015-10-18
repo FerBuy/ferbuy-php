@@ -162,7 +162,6 @@ class Ferbuy_ApiRequestor
 
         $curl_opts[CURLOPT_SSL_VERIFYHOST] = false;
         $curl_opts[CURLOPT_SSL_VERIFYPEER] = false;
-        $curl_opts[CURLOPT_SSL_CIPHER_LIST] = 'TLSv1';
         $curl_opts[CURLOPT_URL] = $absUrl;
         $curl_opts[CURLOPT_RETURNTRANSFER] = true;
         $curl_opts[CURLOPT_CONNECTTIMEOUT] = 30;
