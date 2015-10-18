@@ -31,7 +31,7 @@ class Ferbuy_Order extends Ferbuy_ApiResource
         $requestor = Ferbuy_ApiRequestor::getInstance();
 
         $post_data = array(
-            'command' => $params['courier'].$params['tracking_number'],
+            'command' => $params['courier'].':'.$params['tracking_number'],
             'output_type' => self::OUTPUT_TYPE,
             'site_id' => $requestor->_siteId,
             'transaction_id' => $params['transaction_id'],
@@ -53,7 +53,7 @@ class Ferbuy_Order extends Ferbuy_ApiResource
      *      transaction_id (int|string) Transaction ID with FerBuy.
      *      date (string) Date in `Y-m-d H:i:s` format.
      *
-     * @return FerbuyObject: Response object containing API's request and response.
+     * @return Ferbuy_Object: Response object containing API's request and response.
      */
     public static function delivered($params)
     {
